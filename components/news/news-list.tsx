@@ -1,26 +1,38 @@
+import { Link } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
+import { ScrollView } from 'react-native';
+import { ListItem } from 'react-native-elements';
+import { NewsService } from '../../services/news/news.service';
+import { News } from '../../shared/interfaces/interfaces';
 
 import { Text, View } from '../Themed';
 import { NewsCSS } from './styles/news-styles';
 
-export default function NewsList({}: { path: string }) {
+export default function NewsList(props: any) {
 
-  const [news, setNews] = useState([]);
+  const [news, setNews] = useState<News[]>([]);
+  const srv = new NewsService();
 
   useEffect(() => {
-
-  });
+    srv.get().toPromise().then(res => { setNews(res || []) });
+  }, []);
 
   return (
-    <View>
-      <View style={NewsCSS.getStartedContainer}>
-        <Text
-          style={NewsCSS.getStartedText}
-          lightColor="rgba(0,0,0,0.8)"
-          darkColor="rgba(255,255,255,0.8)">
-            News List
-        </Text>
-      </View>
-    </View>
+    <ScrollView>
+      {
+        news.map(n => {
+          return (
+          <ListItem onPress={() => click(props)}>
+            <Link to="/two">
+              <Text>{n.title}</Text>
+            </Link>
+          </ListItem>) 
+        })
+      }
+    </ScrollView>
   );
+
+  function click(n: News): void {
+    console.log(n);
+  }
 }
