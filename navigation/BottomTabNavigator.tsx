@@ -5,31 +5,35 @@ import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import News from '../screens/News';
+import Home from '../screens/Home';
 import Articles from '../screens/Articles';
-import { BottomTabParamList, ArticlesParamList, NewsParamList } from '../types';
+import { BottomTabParamList, ArticlesParamList, HomeParamList } from '../types';
+import { Button } from 'react-native-elements';
+import Layout from '../constants/Layout';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
+const colorScheme = useColorScheme();
 
 export default function BottomTabNavigator() {
-  const colorScheme = useColorScheme();
-
   return (
     <BottomTab.Navigator
-      initialRouteName="News"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
+      initialRouteName="Home"
+      tabBarOptions={{ 
+        activeTintColor: Colors[colorScheme].tint,
+        showLabel: false
+      }}>
       <BottomTab.Screen
-        name="News"
-        component={NewsNavigator}
+        name={'Home'}
+        component={HomeNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-home" color={color} />
         }}
       />
       <BottomTab.Screen
         name="Articles"
         component={ArticlesNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-paper" color={color} />
         }}
       />
     </BottomTab.Navigator>
@@ -39,23 +43,59 @@ export default function BottomTabNavigator() {
 // You can explore the built-in icon families and icons on the web at:
 // https://icons.expo.fyi/
 function TabBarIcon(props: { name: string; color: string }) {
-  return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
+  return <Ionicons size={23} {...props} />;
 }
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
 
-const NewsStack = createStackNavigator<NewsParamList>();
+const HomeStack = createStackNavigator<HomeParamList>();
 
-function NewsNavigator() {
+function HomeNavigator() {
   return (
-    <NewsStack.Navigator>
-      <NewsStack.Screen
-        name="NewsScreen"
-        component={News}
-        options={{ headerTitle: 'News Title' }}
+    <HomeStack.Navigator>
+      <HomeStack.Screen
+        name="Home"
+        component={Home}
+        options={{ 
+          headerTitle: 'Home', 
+          headerTitleAlign: 'center',
+          headerStyle: { 
+            shadowColor: 'transparent', 
+            borderBottomWidth: 0,
+            height: 50
+          },
+          headerLeft: () => (
+            <><Button
+                type="clear"
+                icon={
+                    <Ionicons name="ios-search"
+                              size={22}
+                              style={{ marginLeft: Layout.margin.small }}
+                              color={Colors[colorScheme].tabIconDefault}/>
+                }
+                onPress={() => {
+                  console.log('hey');
+                } }
+            /></>
+          ),
+          headerRight: () => (
+            <><Button
+                type="clear"
+                icon={
+                    <Ionicons name="ios-more"
+                              size={22}
+                              style={{ marginRight: Layout.margin.small }}
+                              color={Colors[colorScheme].tabIconDefault}/>
+                }
+                onPress={() => {
+                  console.log('hey');
+                } }
+            /></>
+          ), 
+        }}
       />
-    </NewsStack.Navigator>
+    </HomeStack.Navigator>
   );
 }
 
@@ -65,10 +105,47 @@ function ArticlesNavigator() {
   return (
     <ArticlesStack.Navigator>
       <ArticlesStack.Screen
-        name="ArticlesScreen"
+        name="Articles"
         component={Articles}
-        options={{ headerTitle: 'Articles Title' }}
+        options={{ 
+          title: 'Articles', 
+          headerTitleAlign: 'center',
+          headerStyle: { 
+            shadowColor: 'transparent', 
+            borderBottomWidth: 0,
+            height: 50
+          },
+          headerLeft: () => (
+            <><Button
+                type="clear"
+                icon={
+                    <Ionicons name="ios-search"
+                              size={22}
+                              style={{ marginLeft: 10 }}
+                              color={Colors[colorScheme].tabIconDefault}/>
+                }
+                onPress={() => {
+                  console.log('hey');
+                } }
+            /></>
+          ),
+          headerRight: () => (
+            <><Button
+                type="clear"
+                icon={
+                    <Ionicons name="ios-more"
+                              size={22}
+                              style={{ marginRight: 10 }}
+                              color={Colors[colorScheme].tabIconDefault}/>
+                }
+                onPress={() => {
+                  console.log('hey');
+                } }
+            /></>
+          ), 
+        }}
       />
     </ArticlesStack.Navigator>
   );
 }
+

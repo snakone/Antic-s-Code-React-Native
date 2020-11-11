@@ -1,8 +1,10 @@
 import * as axios from 'axios';
 
-var instance = axios.default.create();
+const instance = axios.default.create();
 
-instance.defaults.baseURL = 'https://antics-code.herokuapp.com/';
+instance.defaults.baseURL = 'http://localhost:3000/';
 instance.defaults.timeout = 20000;
 
 export { instance as default };
+
+// https://antics-code.herokuapp.com/

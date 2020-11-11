@@ -9,4 +9,8 @@ export default {
     height,
   },
   isSmallDevice: width < 375,
+  margin: {
+    default: 16,
+    small: 10
+  }
 };

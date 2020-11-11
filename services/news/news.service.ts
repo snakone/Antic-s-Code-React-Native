@@ -4,6 +4,7 @@ import { News, NewsResponse } from "../../shared/interfaces/interfaces";
 import http from '../http/http.service';
 
 export class NewsService extends http {
+  
   readonly API_NEWS = 'news/';
 
   public get(): Observable<News[] | undefined> {

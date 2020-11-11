@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Antics",
+    "name": "Antic's Code",
     "slug": "Antics",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -25,10 +25,12 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.antics.native"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
-    }
+    },
+    "description": ""
   }
 }

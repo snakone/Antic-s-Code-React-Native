@@ -4,14 +4,18 @@ export type RootStackParamList = {
 };
 
 export type BottomTabParamList = {
-  News: undefined;
+  Home: undefined;
   Articles: undefined;
 };
 
+export type HomeParamList = {
+  Home: undefined;
+};
+
 export type NewsParamList = {
-  NewsScreen: undefined;
+  News: undefined;
 };
 
 export type ArticlesParamList = {
-  ArticlesScreen: undefined;
+  Articles: undefined;
 };

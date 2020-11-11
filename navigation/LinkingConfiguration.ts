@@ -6,14 +6,14 @@ export default {
     screens: {
       Root: {
         screens: {
-          News: {
+          Home: {
             screens: {
-              NewsScreen: 'one',
+              Home: 'home',
             },
           },
           Articles: {
             screens: {
-              ArticlesScreen: 'two',
+              Articles: 'articles',
             },
           },
         },
